@@ -42,3 +42,5 @@ public class SecondActivity extends AppCompatActivity {
         });
     }
 }
+
+// GitHub URL : https://github.com/d900139/ActivityPractice
