@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private LinearLayout ll;
     private Button btnGo;
     private NumberPicker numberPicker;
     String[] arrChiNum = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"};
@@ -18,14 +20,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // init LinearLayout ll
+        ll = (LinearLayout) findViewById(R.id.mainLayout);
+        ll.setWeightSum(1);
+
         // init numberPicker
-        numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
+        numberPicker = new NumberPicker(this);
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(arrChiNum.length - 1);
+        //numberPicker.setGravity(View.TEXT_ALIGNMENT_CENTER);
 
         // init btnGo
-        btnGo = (Button) findViewById(R.id.button);
+        btnGo = new Button(this);
         btnGo.setText("Go to SecondActivity");
+
+        // add btnGo and numberPicker to ll
+        ll.addView(numberPicker);
+        ll.addView(btnGo);
 
         // btnGo onClick
         btnGo.setOnClickListener(new Button.OnClickListener() {

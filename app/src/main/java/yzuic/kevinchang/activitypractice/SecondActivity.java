@@ -5,9 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class SecondActivity extends AppCompatActivity {
+    private LinearLayout ll;
     private Button btnBack;
     private TextView textView;
     String[] arrEngNum = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
@@ -17,15 +19,22 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        // init btnGo and textView
-        btnBack = (Button) findViewById(R.id.button2);
-        textView = (TextView) findViewById(R.id.textView);
+        // init LinearLayout ll btnBack and textView
+        ll = (LinearLayout) findViewById(R.id.secondLayout);
+        btnBack = new Button(this);
+        textView = new TextView(this);
 
         // get value from MainActivity
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         final int npValue = bundle.getInt("npValue");
         textView.setText(arrEngNum[npValue]); // set text to textView
+        textView.setGravity(View.TEXT_ALIGNMENT_CENTER);
+        textView.setTextSize(20);
+
+        // add btnBack and textView to ll
+        ll.addView(textView);
+        ll.addView(btnBack);
 
         btnBack.setText("Back to MainActivity");
         btnBack.setOnClickListener(new Button.OnClickListener() {
